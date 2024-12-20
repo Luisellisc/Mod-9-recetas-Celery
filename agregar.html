@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Receta</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Agregar Receta</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul>
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <form action="{{ url_for('agregar_receta') }}" method="POST">
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre" id="nombre" required>
+        <label for="ingredientes">Ingredientes</label>
+        <textarea name="ingredientes" id="ingredientes" required></textarea>
+        <label for="pasos">Pasos</label>
+        <textarea name="pasos" id="pasos" required></textarea>
+        <button type="submit">Agregar</button>
+    </form>
+    <a href="{{ url_for('home') }}">Volver a inicio</a>
+</body>
+</html>
